@@ -3,135 +3,239 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="theme-color" content="#061636" />
-<title>Hawai'i Travel Itinerary</title>
+<meta name="theme-color" content="#0b6b7a" />
+<title>Hawai'i 2026 · Family Itinerary</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌺</text></svg>">
+<link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88'>🌺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --navy:#061636;
-    --navy2:#0b2250;
-    --card:#0e2a5e;
-    --accent:#5aa9ff;
-    --accent2:#8fd0ff;
-    --text:#eaf1fb;
-    --muted:#a9bfe0;
-    --line:#1d3f74;
+    --bg:#f3f8f9;
+    --bg2:#e9f3f4;
+    --ink:#10303a;
+    --muted:#5d7a83;
+    --line:#e2edef;
+    --card:#ffffff;
+    --teal:#0ea5b7;
+    --teal-d:#0b7b8c;
+    --ocean:#0b6b7a;
+    --coral:#ff7a59;
+    --coral-d:#f2603f;
+    --amber:#f6a723;
+    --shadow:0 8px 30px rgba(16,48,58,.08);
+    --shadow-lg:0 18px 50px rgba(16,48,58,.14);
+    --r:20px;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    background:var(--navy);
-    color:var(--text);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
+    margin:0;font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;
   }
-  .wrap{max-width:860px;margin:0 auto;padding:0 18px 80px;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 18px 90px;}
+
+  /* HERO */
   header.hero{
-    padding:48px 18px 30px;
-    text-align:center;
+    position:relative;overflow:hidden;text-align:center;color:#fff;
+    padding:62px 20px 54px;
     background:
-      radial-gradient(1200px 400px at 50% -120px, rgba(90,169,255,.28), transparent 60%),
-      linear-gradient(180deg, var(--navy2), var(--navy));
-    border-bottom:1px solid var(--line);
+      radial-gradient(900px 380px at 15% -40%, rgba(255,255,255,.25), transparent 60%),
+      radial-gradient(700px 320px at 100% 120%, rgba(246,167,35,.35), transparent 55%),
+      linear-gradient(135deg,#0b6b7a 0%,#0ea5b7 55%,#19c3c9 100%);
+  }
+  header.hero::after{
+    content:"";position:absolute;left:0;right:0;bottom:-1px;height:40px;
+    background:var(--bg);
+    -webkit-mask:radial-gradient(22px at 50% 0,transparent 98%,#000) repeat-x;
+    mask:radial-gradient(22px at 50% 0,transparent 98%,#000) repeat-x;
+    -webkit-mask-size:44px 40px;mask-size:44px 40px;
+  }
+  header.hero .eyebrow{
+    font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;
+    opacity:.85;margin:0 0 10px;
   }
   header.hero h1{
-    margin:0;
-    font-size:clamp(2.1rem,7vw,3.6rem);
-    letter-spacing:-.5px;
-    color:var(--accent2);
-    line-height:1.05;
+    font-family:"Fraunces",Georgia,serif;font-weight:700;
+    font-size:clamp(2.4rem,8vw,4rem);line-height:1.02;margin:0;letter-spacing:-.5px;
+    text-shadow:0 2px 20px rgba(0,0,0,.12);
   }
-  header.hero p{margin:10px 0 0;color:var(--muted);font-size:1.05rem;}
-  header.hero .dates{margin-top:6px;color:var(--accent);font-weight:600;letter-spacing:.5px;}
+  header.hero .sub{margin:14px 0 0;font-size:1.08rem;opacity:.95;font-weight:500;}
+  header.hero .chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:18px;}
+  header.hero .chip{
+    background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+    padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600;backdrop-filter:blur(4px);
+  }
+  #countdown{margin-top:20px;font-size:.95rem;font-weight:600;opacity:.95;}
+  #countdown b{font-size:1.15rem;}
 
+  /* NAV */
   nav.tabs{
-    position:sticky;top:0;z-index:20;
-    display:flex;gap:8px;overflow-x:auto;
-    padding:12px 14px;
-    background:rgba(6,22,54,.92);
-    backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:30;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;
+    padding:10px 14px;background:rgba(243,248,249,.9);backdrop-filter:blur(12px);
     border-bottom:1px solid var(--line);
-    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+    -webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
+    mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);
   }
+  nav.tabs::-webkit-scrollbar{display:none;}
   nav.tabs a{
-    flex:0 0 auto;
-    padding:8px 14px;border-radius:999px;
-    font-size:.9rem;font-weight:600;text-decoration:none;
-    color:var(--muted);border:1px solid var(--line);
-    white-space:nowrap;
+    flex:0 0 auto;padding:8px 15px;border-radius:999px;font-size:.9rem;font-weight:600;
+    text-decoration:none;color:var(--muted);transition:.18s;white-space:nowrap;scroll-snap-align:start;
   }
-  nav.tabs a:active{background:var(--accent);color:var(--navy);}
+  nav.tabs a.active{background:var(--ocean);color:#fff;box-shadow:0 4px 14px rgba(11,107,122,.3);}
 
-  section{margin-top:34px;}
+  section{margin-top:40px;scroll-margin-top:64px;}
   h2.sec{
-    font-size:1.3rem;margin:0 0 14px;color:var(--accent2);
-    display:flex;align-items:center;gap:10px;
+    font-family:"Fraunces",Georgia,serif;font-size:1.55rem;font-weight:700;margin:0 0 6px;color:var(--ocean);
   }
-  h2.sec::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--accent);}
+  .sec-note{color:var(--muted);font-size:.95rem;margin:0 0 18px;}
 
+  /* DAY CARDS */
   .day{
-    background:linear-gradient(180deg,var(--card),#0b2250);
-    border:1px solid var(--line);
-    border-radius:16px;
-    padding:18px 18px 10px;
-    margin-bottom:16px;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:4px 20px 8px;margin-bottom:16px;box-shadow:var(--shadow);transition:.2s;
   }
-  .day .dhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin-bottom:12px;}
-  .day .dnum{font-size:1.15rem;font-weight:800;color:var(--accent2);}
-  .day .ddate{color:var(--muted);font-size:.95rem;}
-  .day .dow{margin-left:auto;font-weight:700;color:var(--accent);letter-spacing:1px;font-size:.85rem;}
+  .day.today{border-color:var(--coral);box-shadow:0 0 0 3px rgba(255,122,89,.18),var(--shadow-lg);}
+  .day .dhead{
+    display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+    padding:18px 0 14px;border-bottom:1px solid var(--line);margin-bottom:6px;
+  }
+  .day .daybadge{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    width:54px;height:54px;border-radius:14px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--teal),var(--ocean));color:#fff;line-height:1;
+  }
+  .day .daybadge .n{font-size:1.35rem;font-weight:800;}
+  .day .daybadge .l{font-size:.6rem;letter-spacing:1px;text-transform:uppercase;opacity:.85;margin-top:2px;}
+  .day .dtitle{display:flex;flex-direction:column;}
+  .day .dtitle .dow{font-weight:700;font-size:1.05rem;}
+  .day .dtitle .ddate{color:var(--muted);font-size:.9rem;}
+  .day .todaytag{
+    margin-left:auto;background:var(--coral);color:#fff;font-size:.72rem;font-weight:800;
+    letter-spacing:1px;padding:5px 12px;border-radius:999px;text-transform:uppercase;display:none;
+  }
+  .day.today .todaytag{display:inline-block;}
 
-  .row{
-    display:grid;grid-template-columns:96px 1fr;gap:4px 14px;
-    padding:12px 0;border-top:1px solid var(--line);
-  }
+  .row{display:grid;grid-template-columns:86px 1fr;gap:2px 14px;padding:13px 0;border-top:1px solid var(--line);}
   .row:first-of-type{border-top:none;}
-  .row .time{color:var(--accent);font-weight:700;font-size:.92rem;}
-  .row .act{font-weight:600;}
-  .row .dest{grid-column:2;color:var(--muted);font-size:.92rem;}
+  .row .time{color:var(--teal-d);font-weight:700;font-size:.9rem;padding-top:1px;}
+  .row .body .act{font-weight:600;}
+  .row .body .dest{color:var(--muted);font-size:.9rem;margin-top:2px;}
+  .row .body .dest a{color:var(--teal-d);text-decoration:none;border-bottom:1px dotted var(--teal);}
+  .maplink::after{content:" ↗";font-size:.8em;opacity:.7;}
 
-  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-  @media(max-width:620px){.cols{grid-template-columns:1fr;}}
-
-  .panel{
-    background:var(--card);border:1px solid var(--line);
-    border-radius:14px;padding:16px 18px;margin-bottom:14px;
+  /* WEATHER */
+  .wx-wrap{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:18px;box-shadow:var(--shadow);
   }
-  .panel h3{margin:0 0 10px;color:var(--accent2);font-size:1.05rem;}
-  .panel ul{margin:0;padding-left:20px;}
-  .panel li{margin:4px 0;color:var(--text);}
-  .panel .sub{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;margin:14px 0 6px;font-weight:700;}
-  .panel .sub:first-child{margin-top:0;}
+  .wx-scroll{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;scroll-snap-type:x proximity;}
+  .wx-scroll::-webkit-scrollbar{display:none;}
+  .wx-card{
+    flex:0 0 118px;text-align:center;padding:16px 10px;border-radius:16px;scroll-snap-align:start;
+    background:linear-gradient(160deg,#f0fbfc,#e3f4f6);border:1px solid var(--line);
+  }
+  .wx-card.today{background:linear-gradient(160deg,#fff1ec,#ffe3d9);border-color:var(--coral);}
+  .wx-card .wx-dow{font-weight:700;font-size:.9rem;}
+  .wx-card .wx-date{color:var(--muted);font-size:.72rem;margin-bottom:6px;}
+  .wx-card .wx-ico{font-size:2.1rem;line-height:1;margin:4px 0;}
+  .wx-card .wx-temp{font-weight:800;font-size:1.05rem;}
+  .wx-card .wx-temp .lo{color:var(--muted);font-weight:600;font-size:.85rem;}
+  .wx-card .wx-desc{font-size:.72rem;color:var(--muted);margin-top:4px;min-height:2.3em;}
+  .wx-card .wx-loc{font-size:.66rem;color:var(--teal-d);font-weight:700;margin-top:5px;text-transform:uppercase;letter-spacing:.5px;}
+  .wx-status{color:var(--muted);font-size:.85rem;text-align:center;padding:10px;}
 
-  table.wx{width:100%;border-collapse:collapse;font-size:.95rem;}
-  table.wx td{padding:8px 6px;border-top:1px solid var(--line);}
-  table.wx tr:first-child td{border-top:none;}
-  table.wx td:first-child{font-weight:700;color:var(--accent);}
-  table.wx td:nth-child(2){color:var(--accent2);font-weight:600;white-space:nowrap;}
-  table.wx td:last-child{color:var(--muted);}
+  /* PANELS / PACKING */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:640px){.cols{grid-template-columns:1fr;}}
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);}
+  .panel h3{margin:0 0 12px;font-size:1.08rem;color:var(--ocean);display:flex;align-items:center;gap:8px;}
+  .panel h3 .em{font-size:1.2rem;}
 
-  .info{display:grid;gap:6px;}
+  .pack-top{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+    background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+    padding:14px 18px;box-shadow:var(--shadow);margin-bottom:16px;
+  }
+  .pack-top .bar{flex:1;min-width:140px;height:10px;border-radius:999px;background:var(--bg2);overflow:hidden;}
+  .pack-top .bar i{display:block;height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,var(--teal),var(--ocean));transition:width .3s;}
+  .pack-top .pct{font-weight:800;color:var(--ocean);font-variant-numeric:tabular-nums;}
+  .pack-top button{
+    border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;
+    padding:7px 14px;font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit;
+  }
+  .pack-top button:active{background:var(--bg2);}
+
+  ul.checklist{list-style:none;margin:0;padding:0;}
+  ul.checklist li{margin:0;}
+  ul.checklist label{
+    display:flex;align-items:flex-start;gap:11px;padding:9px 0;cursor:pointer;
+    border-top:1px solid var(--line);
+  }
+  ul.checklist li:first-child label{border-top:none;}
+  ul.checklist input{
+    appearance:none;-webkit-appearance:none;flex:0 0 auto;width:21px;height:21px;margin:1px 0 0;
+    border:2px solid #cbdde1;border-radius:7px;background:#fff;position:relative;cursor:pointer;transition:.15s;
+  }
+  ul.checklist input:checked{background:var(--teal);border-color:var(--teal);}
+  ul.checklist input:checked::after{
+    content:"";position:absolute;left:6px;top:2px;width:5px;height:10px;
+    border:solid #fff;border-width:0 2.5px 2.5px 0;transform:rotate(45deg);
+  }
+  ul.checklist span{transition:.15s;}
+  ul.checklist input:checked + span{color:var(--muted);text-decoration:line-through;}
+
+  .sub-h{color:var(--muted);font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px;margin:16px 0 4px;font-weight:700;}
+  .sub-h:first-of-type{margin-top:0;}
+
+  /* EXCURSIONS */
+  .tag{display:inline-flex;align-items:center;gap:6px;background:#fff4ef;border:1px solid #ffd9cc;color:var(--coral-d);
+       padding:6px 13px;border-radius:999px;font-size:.85rem;font-weight:700;margin:0 6px 8px 0;}
+  .hike-list{list-style:none;margin:0;padding:0;}
+  .hike-list li{padding:12px 0;border-top:1px solid var(--line);}
+  .hike-list li:first-child{border-top:none;}
+  .hike-list .ht{font-weight:700;}
+  .hike-list .hm{color:var(--muted);font-size:.9rem;}
+  .hike-list a{color:var(--teal-d);text-decoration:none;font-weight:600;}
+  .hike-list a::after{content:" ↗";font-size:.8em;opacity:.7;}
+
+  .info{display:grid;gap:12px;}
+  .info .item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .info .item:last-child{border-bottom:none;padding-bottom:0;}
   .info .k{color:var(--muted);font-size:.85rem;}
-  .info .v{font-weight:600;}
-  a.lnk{color:var(--accent);text-decoration:none;word-break:break-word;}
-  a.lnk:active{color:var(--accent2);}
-  .tag{display:inline-block;background:rgba(90,169,255,.15);border:1px solid var(--line);color:var(--accent2);
-       padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:700;margin:2px 6px 2px 0;}
-  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:50px;padding-top:20px;border-top:1px solid var(--line);}
-  .note{color:var(--muted);font-size:.85rem;}
+  .info .v{font-weight:700;text-align:right;}
+  .info .v a{color:var(--teal-d);text-decoration:none;}
+  .conf{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--bg2);padding:3px 9px;border-radius:7px;font-size:.92rem;letter-spacing:.5px;}
+
+  footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:54px;padding-top:24px;border-top:1px solid var(--line);}
+
+  /* BACK TO TOP */
+  #toTop{
+    position:fixed;right:18px;bottom:18px;z-index:40;width:48px;height:48px;border-radius:50%;
+    border:none;background:var(--ocean);color:#fff;font-size:1.3rem;cursor:pointer;
+    box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:.25s;transform:translateY(10px);
+  }
+  #toTop.show{opacity:1;pointer-events:auto;transform:translateY(0);}
 </style>
 </head>
 <body>
 <header class="hero">
-  <h1>Hawai'i Travel Itinerary</h1>
-  <p>Big Island — Volcano &amp; Waikoloa</p>
-  <div class="dates">Oct 13 – Oct 18, 2026</div>
+  <p class="eyebrow">Big Island · Hawai'i</p>
+  <h1>Aloha, Family</h1>
+  <p class="sub">Volcano &amp; Waikoloa · Oct 13–18, 2026</p>
+  <div class="chips">
+    <span class="chip">🌋 Volcano NP</span>
+    <span class="chip">🏝️ Waikoloa</span>
+    <span class="chip">🤿 Snorkel &amp; Sail</span>
+    <span class="chip">⛳ Golf</span>
+  </div>
+  <div id="countdown"></div>
 </header>
 
-<nav class="tabs">
-  <a href="#days">Days</a>
+<nav class="tabs" id="tabs">
+  <a href="#days">Itinerary</a>
   <a href="#weather">Weather</a>
   <a href="#packing">Packing</a>
   <a href="#excursions">Excursions</a>
@@ -142,155 +246,176 @@
 
   <section id="days">
     <h2 class="sec">Daily Plan</h2>
+    <p class="sec-note">Tap any address to open it in Maps. Today's day is highlighted during the trip.</p>
 
-    <div class="day">
-      <div class="dhead"><span class="dnum">Day 1</span><span class="ddate">10/13/2026</span><span class="dow">Tuesday</span></div>
-      <div class="row"><div class="time">12:15–15:45</div><div class="act">Arrival &amp; car rental</div><div class="dest">Kona Airport → Volcano NP</div></div>
-      <div class="row"><div class="time">17:00–20:00</div><div class="act">Drive — scenic route + food</div><div class="dest">Aloha Crater Lodge · 11-3966 Lanihuli Rd, Volcano, HI 96785</div></div>
-      <div class="row"><div class="time">20:00–22:00</div><div class="act">Check in &amp; bedtime</div></div>
+    <div class="day" data-date="2026-10-13">
+      <div class="dhead">
+        <div class="daybadge"><span class="n">1</span><span class="l">Day</span></div>
+        <div class="dtitle"><span class="dow">Tuesday</span><span class="ddate">October 13, 2026</span></div>
+        <span class="todaytag">Today</span>
+      </div>
+      <div class="row"><div class="time">12:15–15:45</div><div class="body"><div class="act">Arrival &amp; car rental</div><div class="dest">Kona Airport → Volcano NP</div></div></div>
+      <div class="row"><div class="time">17:00–20:00</div><div class="body"><div class="act">Drive — scenic route + food</div><div class="dest"><a class="maplink" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Aloha+Crater+Lodge+11-3966+Lanihuli+Rd+Volcano+HI+96785">Aloha Crater Lodge, 11-3966 Lanihuli Rd</a></div></div></div>
+      <div class="row"><div class="time">20:00–22:00</div><div class="body"><div class="act">Check in &amp; bedtime</div></div></div>
     </div>
 
-    <div class="day">
-      <div class="dhead"><span class="dnum">Day 2</span><span class="ddate">10/14/2026</span><span class="dow">Wednesday</span></div>
-      <div class="row"><div class="time">8:00–9:00</div><div class="act">Breakfast, pack</div><div class="dest">Welcome Center</div></div>
-      <div class="row"><div class="time">10:00–18:00</div><div class="act">Hike, explore (see Excursions)</div><div class="dest">Volcano National Park</div></div>
-      <div class="row"><div class="time">18:00–20:00</div><div class="act">Return to hotel, dinner</div><div class="dest">Aloha Crater Lodge</div></div>
+    <div class="day" data-date="2026-10-14">
+      <div class="dhead">
+        <div class="daybadge"><span class="n">2</span><span class="l">Day</span></div>
+        <div class="dtitle"><span class="dow">Wednesday</span><span class="ddate">October 14, 2026</span></div>
+        <span class="todaytag">Today</span>
+      </div>
+      <div class="row"><div class="time">8:00–9:00</div><div class="body"><div class="act">Breakfast, pack</div><div class="dest">Welcome Center</div></div></div>
+      <div class="row"><div class="time">10:00–18:00</div><div class="body"><div class="act">Hike &amp; explore</div><div class="dest"><a class="maplink" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hawaii+Volcanoes+National+Park">Volcano National Park</a> · see Excursions</div></div></div>
+      <div class="row"><div class="time">18:00–20:00</div><div class="body"><div class="act">Return to hotel, dinner</div><div class="dest">Aloha Crater Lodge</div></div></div>
     </div>
 
-    <div class="day">
-      <div class="dhead"><span class="dnum">Day 3</span><span class="ddate">10/15/2026</span><span class="dow">Thursday</span></div>
-      <div class="row"><div class="time">9:00</div><div class="act">Check out</div><div class="dest">Volcano NP → Waikoloa</div></div>
-      <div class="row"><div class="time">9:30–13:00</div><div class="act">Adventure TBD</div><div class="dest">Umaume (maybe)</div></div>
-      <div class="row"><div class="time">15:00–17:00</div><div class="act">Check in &amp; explore</div><div class="dest">Hilton Village Ocean Tower</div></div>
-      <div class="row"><div class="time">17:30–21:00</div><div class="act">Dinner, etc.</div><div class="dest">Hilton Village Ocean Tower</div></div>
+    <div class="day" data-date="2026-10-15">
+      <div class="dhead">
+        <div class="daybadge"><span class="n">3</span><span class="l">Day</span></div>
+        <div class="dtitle"><span class="dow">Thursday</span><span class="ddate">October 15, 2026</span></div>
+        <span class="todaytag">Today</span>
+      </div>
+      <div class="row"><div class="time">9:00</div><div class="body"><div class="act">Check out</div><div class="dest">Volcano NP → Waikoloa</div></div></div>
+      <div class="row"><div class="time">9:30–13:00</div><div class="body"><div class="act">Adventure TBD</div><div class="dest">Umaume (maybe)</div></div></div>
+      <div class="row"><div class="time">15:00–17:00</div><div class="body"><div class="act">Check in &amp; explore</div><div class="dest"><a class="maplink" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Hilton+Waikoloa+Village+Ocean+Tower">Hilton Waikoloa Village · Ocean Tower</a></div></div></div>
+      <div class="row"><div class="time">17:30–21:00</div><div class="body"><div class="act">Dinner, etc.</div><div class="dest">Hilton Village Ocean Tower</div></div></div>
     </div>
 
-    <div class="day">
-      <div class="dhead"><span class="dnum">Day 4</span><span class="ddate">10/16/2026</span><span class="dow">Friday</span></div>
-      <div class="row"><div class="time">7:00–14:30</div><div class="act">Sea Paradise Snorkel &amp; Sail</div><div class="dest">Sea Paradise Snorkel &amp; Sail</div></div>
-      <div class="row"><div class="time">15:00–18:00</div><div class="act">Pools, lagoon, explore</div><div class="dest">Hilton Village Ocean Tower</div></div>
-      <div class="row"><div class="time">18:00–21:00</div><div class="act">Mohamad &amp; Lena dinner</div></div>
+    <div class="day" data-date="2026-10-16">
+      <div class="dhead">
+        <div class="daybadge"><span class="n">4</span><span class="l">Day</span></div>
+        <div class="dtitle"><span class="dow">Friday</span><span class="ddate">October 16, 2026</span></div>
+        <span class="todaytag">Today</span>
+      </div>
+      <div class="row"><div class="time">7:00–14:30</div><div class="body"><div class="act">Sea Paradise Snorkel &amp; Sail</div><div class="dest"><a class="maplink" target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sea+Paradise+Kaleiopapa+St+Kailua-Kona+HI+96740">Kaleiopapa St, Kailua-Kona</a> · conf. GKZJYM</div></div></div>
+      <div class="row"><div class="time">15:00–18:00</div><div class="body"><div class="act">Pools, lagoon, explore</div><div class="dest">Hilton Village Ocean Tower</div></div></div>
+      <div class="row"><div class="time">18:00–21:00</div><div class="body"><div class="act">Mohamad &amp; Lena dinner</div></div></div>
     </div>
 
-    <div class="day">
-      <div class="dhead"><span class="dnum">Day 5</span><span class="ddate">10/17/2026</span><span class="dow">Saturday</span></div>
-      <div class="row"><div class="time">7:20–12:00</div><div class="act">Golf</div><div class="dest">Mohamad &amp; Trevor</div></div>
-      <div class="row"><div class="time">10:00–12:00</div><div class="act">Drive to airport</div><div class="dest">Lena, kids &amp; mom</div></div>
-      <div class="row"><div class="time">1:00–TBD</div><div class="act">OPEN</div></div>
+    <div class="day" data-date="2026-10-17">
+      <div class="dhead">
+        <div class="daybadge"><span class="n">5</span><span class="l">Day</span></div>
+        <div class="dtitle"><span class="dow">Saturday</span><span class="ddate">October 17, 2026</span></div>
+        <span class="todaytag">Today</span>
+      </div>
+      <div class="row"><div class="time">7:20–12:00</div><div class="body"><div class="act">Golf</div><div class="dest">Mohamad &amp; Trevor</div></div></div>
+      <div class="row"><div class="time">10:00–12:00</div><div class="body"><div class="act">Drive to airport</div><div class="dest">Lena, kids &amp; mom</div></div></div>
+      <div class="row"><div class="time">1:00–TBD</div><div class="body"><div class="act">Open / free time</div></div></div>
     </div>
 
-    <div class="day">
-      <div class="dhead"><span class="dnum">Day 6</span><span class="ddate">10/18/2026</span><span class="dow">Sunday</span></div>
-      <div class="row"><div class="time">09:00–12:00</div><div class="act">OPEN</div></div>
-      <div class="row"><div class="time">14:00</div><div class="act">Check out</div><div class="dest">Hilton Village Ocean Tower</div></div>
+    <div class="day" data-date="2026-10-18">
+      <div class="dhead">
+        <div class="daybadge"><span class="n">6</span><span class="l">Day</span></div>
+        <div class="dtitle"><span class="dow">Sunday</span><span class="ddate">October 18, 2026</span></div>
+        <span class="todaytag">Today</span>
+      </div>
+      <div class="row"><div class="time">09:00–12:00</div><div class="body"><div class="act">Open / free time</div></div></div>
+      <div class="row"><div class="time">14:00</div><div class="body"><div class="act">Check out</div><div class="dest">Hilton Village Ocean Tower</div></div></div>
     </div>
   </section>
 
   <section id="weather">
     <h2 class="sec">Weather</h2>
-    <div class="panel">
-      <table class="wx">
-        <tr><td>Tuesday</td><td>72 / 59</td><td>Cloudy</td></tr>
-        <tr><td>Wednesday</td><td>73 / 60</td><td>Afternoon showers</td></tr>
-        <tr><td>Thursday</td><td>74 / 59</td><td>Sun with increasing clouds</td></tr>
-        <tr><td>Thursday</td><td>84 / 67</td><td>Sunshine</td></tr>
-        <tr><td>Friday</td><td>80 / 65</td><td>Partly sunny</td></tr>
-        <tr><td>Saturday</td><td>81 / 66</td><td>Morning showers</td></tr>
-        <tr><td>Sunday</td><td>80 / 65</td><td>Partly sunny</td></tr>
-      </table>
-      <p class="note">Highs / lows in °F.</p>
+    <p class="sec-note">Live forecast for your trip dates — updates automatically.</p>
+    <div class="wx-wrap">
+      <div class="wx-scroll" id="wx"><div class="wx-status">Loading live forecast…</div></div>
     </div>
   </section>
 
   <section id="packing">
     <h2 class="sec">Packing List</h2>
+    <p class="sec-note">Check items off as you pack — your progress is saved on this device.</p>
+    <div class="pack-top">
+      <div class="bar"><i id="packFill"></i></div>
+      <span class="pct" id="packPct">0 / 0</span>
+      <button id="packReset">Reset</button>
+    </div>
     <div class="cols">
       <div class="panel">
-        <h3>Adults</h3>
-        <ul>
-          <li>5–6 everyday tops</li>
-          <li>2–3 pairs of shorts</li>
-          <li>1 pair lightweight pants / leggings</li>
-          <li>1 light sweater or fleece</li>
-          <li>1 rain jacket / waterproof shell</li>
-          <li>1 nicer outfit for dinner</li>
-          <li>1 comfortable travel outfit</li>
-          <li>Pajamas for 5 nights</li>
-          <li>Walking sneakers with good traction</li>
-          <li>Sandals or flip-flops</li>
-          <li>Water shoes (optional)</li>
-          <li>2 swimsuits per person</li>
-          <li>1–2 swim cover-ups</li>
-          <li>Rash guards or sun shirts</li>
-          <li>Small bag (beach / hiking)</li>
-          <li>Waterproof phone pouch</li>
-          <li>Reusable water bottles</li>
+        <h3><span class="em">🧳</span> Adults</h3>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>5–6 everyday tops</span></label></li>
+          <li><label><input type="checkbox"><span>2–3 pairs of shorts</span></label></li>
+          <li><label><input type="checkbox"><span>1 pair lightweight pants / leggings</span></label></li>
+          <li><label><input type="checkbox"><span>1 light sweater or fleece</span></label></li>
+          <li><label><input type="checkbox"><span>1 rain jacket / waterproof shell</span></label></li>
+          <li><label><input type="checkbox"><span>1 nicer outfit for dinner</span></label></li>
+          <li><label><input type="checkbox"><span>1 comfortable travel outfit</span></label></li>
+          <li><label><input type="checkbox"><span>Pajamas for 5 nights</span></label></li>
+          <li><label><input type="checkbox"><span>Walking sneakers with traction</span></label></li>
+          <li><label><input type="checkbox"><span>Sandals or flip-flops</span></label></li>
+          <li><label><input type="checkbox"><span>Water shoes (optional)</span></label></li>
+          <li><label><input type="checkbox"><span>2 swimsuits per person</span></label></li>
+          <li><label><input type="checkbox"><span>1–2 swim cover-ups</span></label></li>
+          <li><label><input type="checkbox"><span>Rash guards or sun shirts</span></label></li>
+          <li><label><input type="checkbox"><span>Small bag (beach / hiking)</span></label></li>
+          <li><label><input type="checkbox"><span>Waterproof phone pouch</span></label></li>
+          <li><label><input type="checkbox"><span>Reusable water bottles</span></label></li>
         </ul>
       </div>
       <div class="panel">
-        <h3>Children</h3>
-        <ul>
-          <li>6 outfits per child, plus 1–2 extras</li>
-          <li>2 warm layers per child</li>
-          <li>Rain jackets</li>
-          <li>Pajamas for 5 nights</li>
-          <li>6 pairs of underwear per child</li>
-          <li>Extra socks</li>
-          <li>Comfortable walking shoes</li>
-          <li>Sandals or water shoes</li>
-          <li>2 swimsuits per child</li>
-          <li>Favorite comfort item or small blanket</li>
-          <li>Lightweight backpack for outings</li>
+        <h3><span class="em">🧒</span> Children</h3>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>6 outfits per child, + 1–2 extras</span></label></li>
+          <li><label><input type="checkbox"><span>2 warm layers per child</span></label></li>
+          <li><label><input type="checkbox"><span>Rain jackets</span></label></li>
+          <li><label><input type="checkbox"><span>Pajamas for 5 nights</span></label></li>
+          <li><label><input type="checkbox"><span>6 pairs of underwear per child</span></label></li>
+          <li><label><input type="checkbox"><span>Extra socks</span></label></li>
+          <li><label><input type="checkbox"><span>Comfortable walking shoes</span></label></li>
+          <li><label><input type="checkbox"><span>Sandals or water shoes</span></label></li>
+          <li><label><input type="checkbox"><span>2 swimsuits per child</span></label></li>
+          <li><label><input type="checkbox"><span>Comfort item or small blanket</span></label></li>
+          <li><label><input type="checkbox"><span>Lightweight backpack for outings</span></label></li>
         </ul>
       </div>
       <div class="panel">
-        <h3>Travel Essentials</h3>
-        <ul>
-          <li>Photo IDs</li>
-          <li>Credit cards and some cash</li>
-          <li>Phones and charging cables</li>
-          <li>Portable power bank</li>
-          <li>Headphones</li>
-          <li>Camera and charger, if using one</li>
-          <li>Snacks for the flight and car</li>
-          <li>Kids' headphones &amp; downloaded entertainment</li>
-          <li>Day-of-travel medications and essentials</li>
+        <h3><span class="em">🎒</span> Travel Essentials</h3>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Photo IDs</span></label></li>
+          <li><label><input type="checkbox"><span>Credit cards and some cash</span></label></li>
+          <li><label><input type="checkbox"><span>Phones and charging cables</span></label></li>
+          <li><label><input type="checkbox"><span>Portable power bank</span></label></li>
+          <li><label><input type="checkbox"><span>Headphones</span></label></li>
+          <li><label><input type="checkbox"><span>Camera and charger</span></label></li>
+          <li><label><input type="checkbox"><span>Snacks for flight and car</span></label></li>
+          <li><label><input type="checkbox"><span>Kids' headphones &amp; downloads</span></label></li>
+          <li><label><input type="checkbox"><span>Day-of-travel medications</span></label></li>
         </ul>
       </div>
       <div class="panel">
-        <h3>Miscellaneous</h3>
-        <ul>
-          <li>Downloaded maps for low-signal areas</li>
-          <li>Broken-in hiking / trail shoes</li>
-          <li>Flashlight or headlamp with batteries</li>
-          <li>Sun hat and sunglasses</li>
-          <li>Binoculars or camera</li>
-          <li>Extra socks &amp; change of clothes for kids</li>
-          <li>Small towel &amp; bag for wet/muddy clothing</li>
-          <li>Rash guards for kids</li>
-          <li>Swim goggles</li>
-          <li>Waterproof phone case or dry bag</li>
-          <li>Lightweight cover-ups</li>
-          <li>Small wet bag for swimsuits</li>
+        <h3><span class="em">🧭</span> Miscellaneous</h3>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Downloaded maps for low signal</span></label></li>
+          <li><label><input type="checkbox"><span>Broken-in hiking / trail shoes</span></label></li>
+          <li><label><input type="checkbox"><span>Flashlight or headlamp + batteries</span></label></li>
+          <li><label><input type="checkbox"><span>Sun hat and sunglasses</span></label></li>
+          <li><label><input type="checkbox"><span>Binoculars or camera</span></label></li>
+          <li><label><input type="checkbox"><span>Towel &amp; bag for wet/muddy clothes</span></label></li>
+          <li><label><input type="checkbox"><span>Swim goggles</span></label></li>
+          <li><label><input type="checkbox"><span>Dry bag for electronics</span></label></li>
+          <li><label><input type="checkbox"><span>Lightweight cover-ups</span></label></li>
+          <li><label><input type="checkbox"><span>Small wet bag for swimsuits</span></label></li>
         </ul>
       </div>
       <div class="panel">
-        <h3>Toiletries</h3>
-        <ul>
-          <li>Toothbrushes and toothpaste</li>
-          <li>Shampoo, conditioner, body wash, face cleanser</li>
-          <li>Deodorant</li>
-          <li>Hairbrush, hair ties and clips</li>
-          <li>Makeup and makeup remover (as needed)</li>
-          <li>Razor and shaving products</li>
-          <li>Contact lenses, solution and glasses</li>
-          <li>Prescription medications</li>
-          <li>Insect repellent</li>
-          <li>Reef-conscious sunscreen SPF 30–50+</li>
-          <li>Moisturizer, after-sun lotion or aloe</li>
-          <li>Hand sanitizer, tissues, lip balm w/ SPF</li>
-          <li>Travel laundry detergent / stain remover</li>
-          <li>First-aid kit and blister bandages</li>
+        <h3><span class="em">🧴</span> Toiletries</h3>
+        <ul class="checklist">
+          <li><label><input type="checkbox"><span>Toothbrushes and toothpaste</span></label></li>
+          <li><label><input type="checkbox"><span>Shampoo, conditioner, body wash</span></label></li>
+          <li><label><input type="checkbox"><span>Face cleanser</span></label></li>
+          <li><label><input type="checkbox"><span>Deodorant</span></label></li>
+          <li><label><input type="checkbox"><span>Hairbrush, hair ties and clips</span></label></li>
+          <li><label><input type="checkbox"><span>Makeup &amp; remover (as needed)</span></label></li>
+          <li><label><input type="checkbox"><span>Razor and shaving products</span></label></li>
+          <li><label><input type="checkbox"><span>Contacts, solution and glasses</span></label></li>
+          <li><label><input type="checkbox"><span>Prescription medications</span></label></li>
+          <li><label><input type="checkbox"><span>Insect repellent</span></label></li>
+          <li><label><input type="checkbox"><span>Reef-safe sunscreen SPF 30–50+</span></label></li>
+          <li><label><input type="checkbox"><span>After-sun lotion or aloe</span></label></li>
+          <li><label><input type="checkbox"><span>Hand sanitizer, tissues, SPF lip balm</span></label></li>
+          <li><label><input type="checkbox"><span>First-aid kit &amp; blister bandages</span></label></li>
         </ul>
       </div>
     </div>
@@ -298,66 +423,198 @@
 
   <section id="excursions">
     <h2 class="sec">Excursions</h2>
-    <div class="panel">
-      <div class="sub">Planned</div>
-      <span class="tag">Golf — Mohamad &amp; Trevor</span>
-      <span class="tag">Horseback Riding — Mom &amp; Lena</span>
-      <span class="tag">Boat Ride</span>
-      <span class="tag">Snorkel Tour</span>
+    <p class="sec-note">Activities and the Volcano NP hikes under consideration.</p>
+    <div style="margin-bottom:16px">
+      <span class="tag">⛳ Golf — Mohamad &amp; Trevor</span>
+      <span class="tag">🐎 Horseback — Mom &amp; Lena</span>
+      <span class="tag">⛵ Boat Ride</span>
+      <span class="tag">🤿 Snorkel Tour</span>
     </div>
-
     <div class="panel">
-      <h3>Volcano National Park Hikes</h3>
-      <div class="sub">Kīlauea Iki Hike</div>
-      <ul>
-        <li>3.3 mile loop · 2–3 hours</li>
-        <li>Picnic lunch suggested</li>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_kilaueaiki.htm">NPS trail details</a></li>
-      </ul>
-      <div class="sub">Nāhuku Lava Tube</div>
-      <ul>
-        <li>1–2 hours · short hike, cave &amp; rainforest, limited parking</li>
-        <li>Can be accessed via the Kīlauea Iki hike</li>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/day-hike-nahuku.htm">NPS trail details</a></li>
-      </ul>
-      <div class="sub">Other Options</div>
-      <ul>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_halemaumau.htm">Halemaʻumaʻu</a> (possibly closed)</li>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_kipukapuaulu.htm">Kīpukapuaulu</a></li>
-        <li><a class="lnk" href="https://www.nps.gov/places/kilauea-overlook.htm">Kīlauea Overlook</a></li>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/craterrimtour.htm">Crater Rim Tour</a> — summit of one of the world's most active volcanoes</li>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_sulphur.htm">Sulphur Banks</a></li>
-        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_devastation.htm">Devastation Trail</a></li>
+      <h3><span class="em">🌋</span> Volcano National Park Hikes</h3>
+      <ul class="hike-list">
+        <li>
+          <div class="ht">Kīlauea Iki Trail <span class="hm">· 3.3 mi loop · 2–3 hrs</span></div>
+          <div class="hm">Crater-floor classic. Picnic lunch suggested. Connects to Nāhuku.</div>
+          <a target="_blank" href="https://www.nps.gov/havo/planyourvisit/hike_day_kilaueaiki.htm">Trail details</a>
+        </li>
+        <li>
+          <div class="ht">Nāhuku (Thurston Lava Tube) <span class="hm">· 1–2 hrs</span></div>
+          <div class="hm">Short walk through a lava cave &amp; rainforest. Limited parking.</div>
+          <a target="_blank" href="https://www.nps.gov/havo/planyourvisit/day-hike-nahuku.htm">Trail details</a>
+        </li>
+        <li>
+          <div class="ht">Devastation Trail <span class="hm">· easy, paved</span></div>
+          <div class="hm">Stroll across a cinder-covered landscape.</div>
+          <a target="_blank" href="https://www.nps.gov/havo/planyourvisit/hike_day_devastation.htm">Trail details</a>
+        </li>
+        <li>
+          <div class="ht">Crater Rim Tour</div>
+          <div class="hm">Awe-inspiring route around the summit of one of the world's most active volcanoes.</div>
+          <a target="_blank" href="https://www.nps.gov/havo/planyourvisit/craterrimtour.htm">Trail details</a>
+        </li>
+        <li>
+          <div class="ht">Sulphur Banks (Haʻakulamanu)</div>
+          <div class="hm">Steam vents and volcanic gases along a boardwalk.</div>
+          <a target="_blank" href="https://www.nps.gov/havo/planyourvisit/hike_day_sulphur.htm">Trail details</a>
+        </li>
+        <li>
+          <div class="ht">Kīpukapuaulu</div>
+          <div class="hm">Quiet forest loop rich with native birds.</div>
+          <a target="_blank" href="https://www.nps.gov/havo/planyourvisit/hike_day_kipukapuaulu.htm">Trail details</a>
+        </li>
+        <li>
+          <div class="ht">Kīlauea Overlook</div>
+          <div class="hm">Caldera viewpoint — great quick stop.</div>
+          <a target="_blank" href="https://www.nps.gov/places/kilauea-overlook.htm">Details</a>
+        </li>
       </ul>
     </div>
   </section>
 
   <section id="logistics">
     <h2 class="sec">Logistics</h2>
+    <p class="sec-note">Confirmations &amp; contacts. Tap a phone number to call.</p>
     <div class="cols">
       <div class="panel">
-        <h3>Transportation &amp; Stays</h3>
+        <h3><span class="em">🚗</span> Transportation &amp; Stays</h3>
         <div class="info">
-          <div><span class="k">Car Rental</span><br><span class="v">Avis — #25916242US2</span></div>
-          <div><span class="k">Aloha Crater Lodge</span><br><span class="v"><a class="lnk" href="tel:6087447096">608-744-7096</a></span></div>
-          <div><span class="k">Hilton Waikoloa</span><br><span class="v"><a class="lnk" href="tel:3539312726">353-931-2726</a></span></div>
-          <div><span class="k">Masri — United Flight</span><br><span class="v">DKJM8V</span></div>
-          <div><span class="k">Dubensky — United Flight</span><br><span class="v">DKJM8V</span></div>
+          <div class="item"><span class="k">Car Rental · Avis</span><span class="v"><span class="conf">25916242US2</span></span></div>
+          <div class="item"><span class="k">Masri · United Flight</span><span class="v"><span class="conf">DKJM8V</span></span></div>
+          <div class="item"><span class="k">Dubensky · United Flight</span><span class="v"><span class="conf">DKJM8V</span></span></div>
+          <div class="item"><span class="k">Aloha Crater Lodge</span><span class="v"><a href="tel:+16087447096">608-744-7096</a></span></div>
+          <div class="item"><span class="k">Hilton Waikoloa</span><span class="v"><a href="tel:+13539312726">353-931-2726</a></span></div>
         </div>
       </div>
       <div class="panel">
-        <h3>Snorkel</h3>
+        <h3><span class="em">🤿</span> Snorkel — Sea Paradise</h3>
         <div class="info">
-          <div><span class="k">Confirmation</span><br><span class="v">GKZJYM</span></div>
-          <div><span class="k">Location</span><br><span class="v">Kaleiopapa Street, Kailua-Kona, HI 96740</span></div>
+          <div class="item"><span class="k">Confirmation</span><span class="v"><span class="conf">GKZJYM</span></span></div>
+          <div class="item"><span class="k">Date &amp; Time</span><span class="v">Fri Oct 16 · 7:00–14:30</span></div>
+          <div class="item"><span class="k">Location</span><span class="v"><a target="_blank" href="https://www.google.com/maps/search/?api=1&query=Sea+Paradise+Kaleiopapa+St+Kailua-Kona+HI+96740">Kaleiopapa St, Kailua-Kona</a></span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <footer>
-    Made with aloha 🌺 · Oct 2026
-  </footer>
+  <footer>Made with aloha 🌺 · Have the best trip, family!</footer>
 </div>
+
+<button id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+(function(){
+  // ---------- Countdown ----------
+  var start = new Date(2026,9,13);
+  var end = new Date(2026,9,18);
+  var now = new Date();
+  var cd = document.getElementById('countdown');
+  var today0 = new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  var days = Math.round((start - today0)/86400000);
+  if(days > 1) cd.innerHTML = '<b>'+days+'</b> days to go ✈️';
+  else if(days === 1) cd.innerHTML = '<b>Tomorrow!</b> ✈️';
+  else if(today0>=start && today0<=end) cd.innerHTML = "You're in Hawai'i — enjoy! 🌺";
+  else if(days===0) cd.innerHTML = "Today's the day! ✈️";
+  else cd.innerHTML = "Hope it was amazing 🌅";
+
+  // ---------- Today highlight ----------
+  function ymd(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');}
+  var todayStr = ymd(now);
+  document.querySelectorAll('.day').forEach(function(d){
+    if(d.getAttribute('data-date')===todayStr){
+      d.classList.add('today');
+      setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'center'});},600);
+    }
+  });
+
+  // ---------- Packing checklist ----------
+  var boxes = document.querySelectorAll('.checklist input');
+  var fill = document.getElementById('packFill'), pct = document.getElementById('packPct');
+  function keyFor(b){return 'pack:'+b.closest('.panel').querySelector('h3').textContent.trim()+':'+b.nextElementSibling.textContent.trim();}
+  function update(){
+    var done=0; boxes.forEach(function(b){if(b.checked)done++;});
+    pct.textContent = done+' / '+boxes.length;
+    fill.style.width = (boxes.length?(done/boxes.length*100):0)+'%';
+  }
+  boxes.forEach(function(b){
+    var k=keyFor(b);
+    try{ if(localStorage.getItem(k)==='1') b.checked=true; }catch(e){}
+    b.addEventListener('change',function(){
+      try{ b.checked?localStorage.setItem(k,'1'):localStorage.removeItem(k); }catch(e){}
+      update();
+    });
+  });
+  update();
+  document.getElementById('packReset').addEventListener('click',function(){
+    boxes.forEach(function(b){b.checked=false;try{localStorage.removeItem(keyFor(b));}catch(e){}});
+    update();
+  });
+
+  // ---------- Scrollspy nav ----------
+  var links = Array.prototype.slice.call(document.querySelectorAll('#tabs a'));
+  var secs = links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  var spy = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id='#'+e.target.id;
+        links.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===id);});
+      }
+    });
+  },{rootMargin:'-45% 0px -50% 0px'});
+  secs.forEach(function(s){if(s)spy.observe(s);});
+
+  // ---------- Back to top ----------
+  var top = document.getElementById('toTop');
+  window.addEventListener('scroll',function(){top.classList.toggle('show',window.scrollY>500);});
+  top.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+  // ---------- Live weather (Open-Meteo, no key) ----------
+  var WMO={0:['☀️','Clear'],1:['🌤️','Mostly clear'],2:['⛅','Partly cloudy'],3:['☁️','Overcast'],
+    45:['🌫️','Fog'],48:['🌫️','Rime fog'],51:['🌦️','Light drizzle'],53:['🌦️','Drizzle'],55:['🌦️','Heavy drizzle'],
+    61:['🌧️','Light rain'],63:['🌧️','Rain'],65:['🌧️','Heavy rain'],66:['🌧️','Freezing rain'],67:['🌧️','Freezing rain'],
+    71:['🌨️','Light snow'],73:['🌨️','Snow'],75:['🌨️','Heavy snow'],77:['🌨️','Snow grains'],
+    80:['🌦️','Light showers'],81:['🌦️','Showers'],82:['⛈️','Heavy showers'],
+    85:['🌨️','Snow showers'],86:['🌨️','Snow showers'],95:['⛈️','Thunderstorm'],96:['⛈️','Thunderstorm'],99:['⛈️','Thunderstorm']};
+  var locs = {
+    volcano:{lat:19.43,lon:-155.24,label:'Volcano'},
+    waikoloa:{lat:19.92,lon:-155.89,label:'Waikoloa'}
+  };
+  var dayLoc = {'2026-10-13':'volcano','2026-10-14':'volcano','2026-10-15':'waikoloa','2026-10-16':'waikoloa','2026-10-17':'waikoloa','2026-10-18':'waikoloa'};
+  var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  var wxEl=document.getElementById('wx');
+
+  function fetchLoc(l){
+    var u='https://api.open-meteo.com/v1/forecast?latitude='+l.lat+'&longitude='+l.lon+
+      '&daily=weather_code,temperature_2m_max,temperature_2m_min&temperature_unit=fahrenheit'+
+      '&timezone=Pacific%2FHonolulu&start_date=2026-10-13&end_date=2026-10-18';
+    return fetch(u).then(function(r){return r.json();});
+  }
+  Promise.all([fetchLoc(locs.volcano),fetchLoc(locs.waikoloa)]).then(function(res){
+    var data={volcano:res[0].daily,waikoloa:res[1].daily};
+    if(!data.volcano||!data.volcano.time) throw new Error('no data');
+    var html='';
+    var dates=data.volcano.time;
+    dates.forEach(function(dateStr,i){
+      var which=dayLoc[dateStr]||'waikoloa';
+      var d=data[which];
+      var code=d.weather_code[i], hi=Math.round(d.temperature_2m_max[i]), lo=Math.round(d.temperature_2m_min[i]);
+      var w=WMO[code]||['🌡️','—'];
+      var dt=new Date(dateStr+'T12:00:00');
+      var isToday = dateStr===todayStr;
+      html+='<div class="wx-card'+(isToday?' today':'')+'">'+
+        '<div class="wx-dow">'+DOW[dt.getDay()]+'</div>'+
+        '<div class="wx-date">'+(dt.getMonth()+1)+'/'+dt.getDate()+'</div>'+
+        '<div class="wx-ico">'+w[0]+'</div>'+
+        '<div class="wx-temp">'+hi+'°<span class="lo"> / '+lo+'°</span></div>'+
+        '<div class="wx-desc">'+w[1]+'</div>'+
+        '<div class="wx-loc">📍 '+locs[which].label+'</div>'+
+      '</div>';
+    });
+    wxEl.innerHTML=html;
+  }).catch(function(){
+    wxEl.innerHTML='<div class="wx-status">Live forecast unavailable right now. Volcano runs cooler (low 70s, chance of showers); Waikoloa is warmer and drier (around 80°F). Check again closer to your trip.</div>';
+  });
+})();
+</script>
 </body>
 </html>
