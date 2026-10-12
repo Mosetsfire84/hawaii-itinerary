@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#061636" />
+<title>Hawai'i Travel Itinerary</title>
+<style>
+  :root{
+    --navy:#061636;
+    --navy2:#0b2250;
+    --card:#0e2a5e;
+    --accent:#5aa9ff;
+    --accent2:#8fd0ff;
+    --text:#eaf1fb;
+    --muted:#a9bfe0;
+    --line:#1d3f74;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    background:var(--navy);
+    color:var(--text);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:860px;margin:0 auto;padding:0 18px 80px;}
+  header.hero{
+    padding:48px 18px 30px;
+    text-align:center;
+    background:
+      radial-gradient(1200px 400px at 50% -120px, rgba(90,169,255,.28), transparent 60%),
+      linear-gradient(180deg, var(--navy2), var(--navy));
+    border-bottom:1px solid var(--line);
+  }
+  header.hero h1{
+    margin:0;
+    font-size:clamp(2.1rem,7vw,3.6rem);
+    letter-spacing:-.5px;
+    color:var(--accent2);
+    line-height:1.05;
+  }
+  header.hero p{margin:10px 0 0;color:var(--muted);font-size:1.05rem;}
+  header.hero .dates{margin-top:6px;color:var(--accent);font-weight:600;letter-spacing:.5px;}
+
+  nav.tabs{
+    position:sticky;top:0;z-index:20;
+    display:flex;gap:8px;overflow-x:auto;
+    padding:12px 14px;
+    background:rgba(6,22,54,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    -webkit-overflow-scrolling:touch;
+  }
+  nav.tabs a{
+    flex:0 0 auto;
+    padding:8px 14px;border-radius:999px;
+    font-size:.9rem;font-weight:600;text-decoration:none;
+    color:var(--muted);border:1px solid var(--line);
+    white-space:nowrap;
+  }
+  nav.tabs a:active{background:var(--accent);color:var(--navy);}
+
+  section{margin-top:34px;}
+  h2.sec{
+    font-size:1.3rem;margin:0 0 14px;color:var(--accent2);
+    display:flex;align-items:center;gap:10px;
+  }
+  h2.sec::before{content:"";width:26px;height:3px;border-radius:2px;background:var(--accent);}
+
+  .day{
+    background:linear-gradient(180deg,var(--card),#0b2250);
+    border:1px solid var(--line);
+    border-radius:16px;
+    padding:18px 18px 10px;
+    margin-bottom:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+  }
+  .day .dhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 12px;margin-bottom:12px;}
+  .day .dnum{font-size:1.15rem;font-weight:800;color:var(--accent2);}
+  .day .ddate{color:var(--muted);font-size:.95rem;}
+  .day .dow{margin-left:auto;font-weight:700;color:var(--accent);letter-spacing:1px;font-size:.85rem;}
+
+  .row{
+    display:grid;grid-template-columns:96px 1fr;gap:4px 14px;
+    padding:12px 0;border-top:1px solid var(--line);
+  }
+  .row:first-of-type{border-top:none;}
+  .row .time{color:var(--accent);font-weight:700;font-size:.92rem;}
+  .row .act{font-weight:600;}
+  .row .dest{grid-column:2;color:var(--muted);font-size:.92rem;}
+
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:620px){.cols{grid-template-columns:1fr;}}
+
+  .panel{
+    background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;margin-bottom:14px;
+  }
+  .panel h3{margin:0 0 10px;color:var(--accent2);font-size:1.05rem;}
+  .panel ul{margin:0;padding-left:20px;}
+  .panel li{margin:4px 0;color:var(--text);}
+  .panel .sub{color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;margin:14px 0 6px;font-weight:700;}
+  .panel .sub:first-child{margin-top:0;}
+
+  table.wx{width:100%;border-collapse:collapse;font-size:.95rem;}
+  table.wx td{padding:8px 6px;border-top:1px solid var(--line);}
+  table.wx tr:first-child td{border-top:none;}
+  table.wx td:first-child{font-weight:700;color:var(--accent);}
+  table.wx td:nth-child(2){color:var(--accent2);font-weight:600;white-space:nowrap;}
+  table.wx td:last-child{color:var(--muted);}
+
+  .info{display:grid;gap:6px;}
+  .info .k{color:var(--muted);font-size:.85rem;}
+  .info .v{font-weight:600;}
+  a.lnk{color:var(--accent);text-decoration:none;word-break:break-word;}
+  a.lnk:active{color:var(--accent2);}
+  .tag{display:inline-block;background:rgba(90,169,255,.15);border:1px solid var(--line);color:var(--accent2);
+       padding:2px 10px;border-radius:999px;font-size:.78rem;font-weight:700;margin:2px 6px 2px 0;}
+  footer{text-align:center;color:var(--muted);font-size:.85rem;margin-top:50px;padding-top:20px;border-top:1px solid var(--line);}
+  .note{color:var(--muted);font-size:.85rem;}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>Hawai'i Travel Itinerary</h1>
+  <p>Big Island — Volcano &amp; Waikoloa</p>
+  <div class="dates">Oct 13 – Oct 18, 2026</div>
+</header>
+
+<nav class="tabs">
+  <a href="#days">Days</a>
+  <a href="#weather">Weather</a>
+  <a href="#packing">Packing</a>
+  <a href="#excursions">Excursions</a>
+  <a href="#logistics">Logistics</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="days">
+    <h2 class="sec">Daily Plan</h2>
+
+    <div class="day">
+      <div class="dhead"><span class="dnum">Day 1</span><span class="ddate">10/13/2026</span><span class="dow">Tuesday</span></div>
+      <div class="row"><div class="time">12:15–15:45</div><div class="act">Arrival &amp; car rental</div><div class="dest">Kona Airport → Volcano NP</div></div>
+      <div class="row"><div class="time">17:00–20:00</div><div class="act">Drive — scenic route + food</div><div class="dest">Aloha Crater Lodge · 11-3966 Lanihuli Rd, Volcano, HI 96785</div></div>
+      <div class="row"><div class="time">20:00–22:00</div><div class="act">Check in &amp; bedtime</div></div>
+    </div>
+
+    <div class="day">
+      <div class="dhead"><span class="dnum">Day 2</span><span class="ddate">10/14/2026</span><span class="dow">Wednesday</span></div>
+      <div class="row"><div class="time">8:00–9:00</div><div class="act">Breakfast, pack</div><div class="dest">Welcome Center</div></div>
+      <div class="row"><div class="time">10:00–18:00</div><div class="act">Hike, explore (see Excursions)</div><div class="dest">Volcano National Park</div></div>
+      <div class="row"><div class="time">18:00–20:00</div><div class="act">Return to hotel, dinner</div><div class="dest">Aloha Crater Lodge</div></div>
+    </div>
+
+    <div class="day">
+      <div class="dhead"><span class="dnum">Day 3</span><span class="ddate">10/15/2026</span><span class="dow">Thursday</span></div>
+      <div class="row"><div class="time">9:00</div><div class="act">Check out</div><div class="dest">Volcano NP → Waikoloa</div></div>
+      <div class="row"><div class="time">9:30–13:00</div><div class="act">Adventure TBD</div><div class="dest">Umaume (maybe)</div></div>
+      <div class="row"><div class="time">15:00–17:00</div><div class="act">Check in &amp; explore</div><div class="dest">Hilton Village Ocean Tower</div></div>
+      <div class="row"><div class="time">17:30–21:00</div><div class="act">Dinner, etc.</div><div class="dest">Hilton Village Ocean Tower</div></div>
+    </div>
+
+    <div class="day">
+      <div class="dhead"><span class="dnum">Day 4</span><span class="ddate">10/16/2026</span><span class="dow">Friday</span></div>
+      <div class="row"><div class="time">7:00–14:30</div><div class="act">Sea Paradise Snorkel &amp; Sail</div><div class="dest">Sea Paradise Snorkel &amp; Sail</div></div>
+      <div class="row"><div class="time">15:00–18:00</div><div class="act">Pools, lagoon, explore</div><div class="dest">Hilton Village Ocean Tower</div></div>
+      <div class="row"><div class="time">18:00–21:00</div><div class="act">Mohamad &amp; Lena dinner</div></div>
+    </div>
+
+    <div class="day">
+      <div class="dhead"><span class="dnum">Day 5</span><span class="ddate">10/17/2026</span><span class="dow">Saturday</span></div>
+      <div class="row"><div class="time">7:20–12:00</div><div class="act">Golf</div><div class="dest">Mohamad &amp; Trevor</div></div>
+      <div class="row"><div class="time">10:00–12:00</div><div class="act">Drive to airport</div><div class="dest">Lena, kids &amp; mom</div></div>
+      <div class="row"><div class="time">1:00–TBD</div><div class="act">OPEN</div></div>
+    </div>
+
+    <div class="day">
+      <div class="dhead"><span class="dnum">Day 6</span><span class="ddate">10/18/2026</span><span class="dow">Sunday</span></div>
+      <div class="row"><div class="time">09:00–12:00</div><div class="act">OPEN</div></div>
+      <div class="row"><div class="time">14:00</div><div class="act">Check out</div><div class="dest">Hilton Village Ocean Tower</div></div>
+    </div>
+  </section>
+
+  <section id="weather">
+    <h2 class="sec">Weather</h2>
+    <div class="panel">
+      <table class="wx">
+        <tr><td>Tuesday</td><td>72 / 59</td><td>Cloudy</td></tr>
+        <tr><td>Wednesday</td><td>73 / 60</td><td>Afternoon showers</td></tr>
+        <tr><td>Thursday</td><td>74 / 59</td><td>Sun with increasing clouds</td></tr>
+        <tr><td>Thursday</td><td>84 / 67</td><td>Sunshine</td></tr>
+        <tr><td>Friday</td><td>80 / 65</td><td>Partly sunny</td></tr>
+        <tr><td>Saturday</td><td>81 / 66</td><td>Morning showers</td></tr>
+        <tr><td>Sunday</td><td>80 / 65</td><td>Partly sunny</td></tr>
+      </table>
+      <p class="note">Highs / lows in °F.</p>
+    </div>
+  </section>
+
+  <section id="packing">
+    <h2 class="sec">Packing List</h2>
+    <div class="cols">
+      <div class="panel">
+        <h3>Adults</h3>
+        <ul>
+          <li>5–6 everyday tops</li>
+          <li>2–3 pairs of shorts</li>
+          <li>1 pair lightweight pants / leggings</li>
+          <li>1 light sweater or fleece</li>
+          <li>1 rain jacket / waterproof shell</li>
+          <li>1 nicer outfit for dinner</li>
+          <li>1 comfortable travel outfit</li>
+          <li>Pajamas for 5 nights</li>
+          <li>Walking sneakers with good traction</li>
+          <li>Sandals or flip-flops</li>
+          <li>Water shoes (optional)</li>
+          <li>2 swimsuits per person</li>
+          <li>1–2 swim cover-ups</li>
+          <li>Rash guards or sun shirts</li>
+          <li>Small bag (beach / hiking)</li>
+          <li>Waterproof phone pouch</li>
+          <li>Reusable water bottles</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Children</h3>
+        <ul>
+          <li>6 outfits per child, plus 1–2 extras</li>
+          <li>2 warm layers per child</li>
+          <li>Rain jackets</li>
+          <li>Pajamas for 5 nights</li>
+          <li>6 pairs of underwear per child</li>
+          <li>Extra socks</li>
+          <li>Comfortable walking shoes</li>
+          <li>Sandals or water shoes</li>
+          <li>2 swimsuits per child</li>
+          <li>Favorite comfort item or small blanket</li>
+          <li>Lightweight backpack for outings</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Travel Essentials</h3>
+        <ul>
+          <li>Photo IDs</li>
+          <li>Credit cards and some cash</li>
+          <li>Phones and charging cables</li>
+          <li>Portable power bank</li>
+          <li>Headphones</li>
+          <li>Camera and charger, if using one</li>
+          <li>Snacks for the flight and car</li>
+          <li>Kids' headphones &amp; downloaded entertainment</li>
+          <li>Day-of-travel medications and essentials</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Miscellaneous</h3>
+        <ul>
+          <li>Downloaded maps for low-signal areas</li>
+          <li>Broken-in hiking / trail shoes</li>
+          <li>Flashlight or headlamp with batteries</li>
+          <li>Sun hat and sunglasses</li>
+          <li>Binoculars or camera</li>
+          <li>Extra socks &amp; change of clothes for kids</li>
+          <li>Small towel &amp; bag for wet/muddy clothing</li>
+          <li>Rash guards for kids</li>
+          <li>Swim goggles</li>
+          <li>Waterproof phone case or dry bag</li>
+          <li>Lightweight cover-ups</li>
+          <li>Small wet bag for swimsuits</li>
+        </ul>
+      </div>
+      <div class="panel">
+        <h3>Toiletries</h3>
+        <ul>
+          <li>Toothbrushes and toothpaste</li>
+          <li>Shampoo, conditioner, body wash, face cleanser</li>
+          <li>Deodorant</li>
+          <li>Hairbrush, hair ties and clips</li>
+          <li>Makeup and makeup remover (as needed)</li>
+          <li>Razor and shaving products</li>
+          <li>Contact lenses, solution and glasses</li>
+          <li>Prescription medications</li>
+          <li>Insect repellent</li>
+          <li>Reef-conscious sunscreen SPF 30–50+</li>
+          <li>Moisturizer, after-sun lotion or aloe</li>
+          <li>Hand sanitizer, tissues, lip balm w/ SPF</li>
+          <li>Travel laundry detergent / stain remover</li>
+          <li>First-aid kit and blister bandages</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="excursions">
+    <h2 class="sec">Excursions</h2>
+    <div class="panel">
+      <div class="sub">Planned</div>
+      <span class="tag">Golf — Mohamad &amp; Trevor</span>
+      <span class="tag">Horseback Riding — Mom &amp; Lena</span>
+      <span class="tag">Boat Ride</span>
+      <span class="tag">Snorkel Tour</span>
+    </div>
+
+    <div class="panel">
+      <h3>Volcano National Park Hikes</h3>
+      <div class="sub">Kīlauea Iki Hike</div>
+      <ul>
+        <li>3.3 mile loop · 2–3 hours</li>
+        <li>Picnic lunch suggested</li>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_kilaueaiki.htm">NPS trail details</a></li>
+      </ul>
+      <div class="sub">Nāhuku Lava Tube</div>
+      <ul>
+        <li>1–2 hours · short hike, cave &amp; rainforest, limited parking</li>
+        <li>Can be accessed via the Kīlauea Iki hike</li>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/day-hike-nahuku.htm">NPS trail details</a></li>
+      </ul>
+      <div class="sub">Other Options</div>
+      <ul>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_halemaumau.htm">Halemaʻumaʻu</a> (possibly closed)</li>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_kipukapuaulu.htm">Kīpukapuaulu</a></li>
+        <li><a class="lnk" href="https://www.nps.gov/places/kilauea-overlook.htm">Kīlauea Overlook</a></li>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/craterrimtour.htm">Crater Rim Tour</a> — summit of one of the world's most active volcanoes</li>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_sulphur.htm">Sulphur Banks</a></li>
+        <li><a class="lnk" href="https://www.nps.gov/havo/planyourvisit/hike_day_devastation.htm">Devastation Trail</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="logistics">
+    <h2 class="sec">Logistics</h2>
+    <div class="cols">
+      <div class="panel">
+        <h3>Transportation &amp; Stays</h3>
+        <div class="info">
+          <div><span class="k">Car Rental</span><br><span class="v">Avis — #25916242US2</span></div>
+          <div><span class="k">Aloha Crater Lodge</span><br><span class="v"><a class="lnk" href="tel:6087447096">608-744-7096</a></span></div>
+          <div><span class="k">Hilton Waikoloa</span><br><span class="v"><a class="lnk" href="tel:3539312726">353-931-2726</a></span></div>
+          <div><span class="k">Masri — United Flight</span><br><span class="v">DKJM8V</span></div>
+          <div><span class="k">Dubensky — United Flight</span><br><span class="v">DKJM8V</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <h3>Snorkel</h3>
+        <div class="info">
+          <div><span class="k">Confirmation</span><br><span class="v">GKZJYM</span></div>
+          <div><span class="k">Location</span><br><span class="v">Kaleiopapa Street, Kailua-Kona, HI 96740</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Made with aloha 🌺 · Oct 2026
+  </footer>
+</div>
+</body>
+</html>
